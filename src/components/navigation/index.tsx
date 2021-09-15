@@ -1,11 +1,11 @@
-import { Nav, NavList } from './elements';
+import { Nav, NavList, Link } from './elements';
 import { List } from './list';
 
 const Navgation: React.FC = () => {
   return (
     <Nav>
       <NavList>
-        {List.map((n) => <h3>{n.title}</h3>)}
+        {List.map((n, idx) => <Link to="#" key={idx} >{n.title}</Link>)}
       </NavList>
     </Nav>
   );
