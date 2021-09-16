@@ -3,12 +3,6 @@ import styled  from "styled-components";
 /* Main Section */
 
 export const MainContainer = styled.main`
-  .show-scene-0 .section-0 .sticky-elem,
-  .show-scene-1 .seciton-1 .sticky-elem,
-  .show-scene-2 .section-2 .sticky-elem,
-  .show-scene-3 .section-3 .sticky-elem{
-    display: block;
-  }
 `;
 
 export const ScrollSection = styled.section`

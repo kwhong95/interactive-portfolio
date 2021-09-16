@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   MainContainer,
   ScrollSection, 
@@ -12,10 +12,9 @@ import {
 
 
 const MainSection: React.FC = () => {
-  const [currnetScene, setCurrentScene] = useState<string>("show-scene-0");
 
   return (
-    <MainContainer className={currnetScene}>
+    <MainContainer>
       <ScrollSection className="section-0">
         <h1>UX Developer</h1>
         <MainMessage className="sticky-elem">
