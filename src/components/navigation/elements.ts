@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 
 export const Nav = styled.nav`
   height: 44px;
+  padding: 0 1rem;
 `;
 
 export const NavList = styled.div`
