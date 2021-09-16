@@ -10,12 +10,18 @@ export const ScrollSection = styled.section`
     font-size: 3rem ;
     text-align: center; 
     font-weight: 800 ;
+
+    @media (min-width: 1024px) {
+      font-size: 7vw;
+    }
   }
 
   .desc1 {
     padding: 0 1rem;
     font-size: 1rem;
     color: #888;
+    max-width: 1000px;
+    margin: 0 auto;
 
     strong {
       margin-right: .2em;
@@ -23,10 +29,27 @@ export const ScrollSection = styled.section`
       font-size: 2rem;
       color: #d4d4d4;
     }
+
+    @media (min-width: 1024px) {
+      font-size: 1.2rem;
+
+      strong {
+        font-size: 3.6rem;
+      }
+    }
   }
 
   .desc2 {
-    font-size: 1.8 rem;
+    font-size: 1.8rem;
+
+    @media (min-width: 1024px) {
+     font-size: 5.2vw;
+
+     small {
+       font-size: 2.3vw;
+       font-weight: bolder;
+     }
+    }
   }
 `;
 
@@ -37,7 +60,6 @@ export const MainMessage = styled.div`
   margin: 5px 0;
   height: 3em;
   font-size: 1.5rem;
-  background: rgba(0, 0, 0, 0.3);
 
   p {
     font-weight: bold;
@@ -51,11 +73,19 @@ export const MainMessage = styled.div`
     margin-bottom: 1em;
     font-size: .8rem;
    }
+
+   @media (min-width: 1024px) {
+     font-size : 2vw;
+    }
 `;
 
 export const DescMessage = styled.div`
   font-weight: bold;
   width: 50%;
+
+  @media (min-width: 1024px) {
+    width: 20%;
+  }
 `;
 
 export const MidMeessage = styled.p`
@@ -63,9 +93,15 @@ export const MidMeessage = styled.p`
   font-size: 1.5rem;
   color: #999 ;
   line-height: 1.3;
+  max-width: 1000px;
+  margin: 0 auto;
 
   strong {
     color: #d4d4d4;
+  }
+
+  @media (min-width: 1024px) {
+     font-size : 2.8vw;
   }
 `;
 
@@ -76,9 +112,15 @@ export const Pin = styled.div`
 `;
 
 export const CanvasCaption = styled.p`
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 0 1rem;
   font-size: .8rem;
   color: #999;
+
+  @media (min-width: 1024px) {
+    font-size : 1.2rem;
+  }
 `;
 
 export const Footer = styled.footer`
@@ -86,5 +128,5 @@ export const Footer = styled.footer`
   align-items: center;
   justify-content: center;
   height: 4.5rem;
-  background: slateblue;
+  background: slateblue ;
 `;

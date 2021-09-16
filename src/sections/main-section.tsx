@@ -53,7 +53,7 @@ const MainSection: React.FC = () => {
       <ScrollSection id="4">
         <MidMeessage>
           <strong>Passion 열정</strong><br/>
-          생각을 표현하는 열정<br/>
+          생각을 표현하는 방법<br/>
           당신의 최고의 무기.
         </MidMeessage>
         <CanvasCaption>
