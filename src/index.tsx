@@ -6,13 +6,13 @@ import MainPage from "./pages/main";
 
 const App: React.FC = () => {
   return (
-    <main>
+    <>
       <BrowserRouter>
-      <GlobalStyle />
-      <Navgation />
-      <MainPage />
+        <GlobalStyle />
+        <Navgation />
+        <MainPage />
       </BrowserRouter>
-    </main>
+    </>
   );
 }
 

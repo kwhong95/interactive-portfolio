@@ -1,11 +1,13 @@
-import { MainSection } from './elements';
+import { MainContainer } from './elements';
 import MainHeader from '../components/header/main-header';
+import MainSection from '../sections/main-section';
 
 const MainPage = () => {
   return (
-    <MainSection>
+    <MainContainer>
       <MainHeader />
-    </MainSection>
+      <MainSection />
+    </MainContainer>
   );
 }
 

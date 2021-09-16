@@ -17,7 +17,8 @@ export const NavList = styled.div`
 `;
 
 export const Link = styled(NavLink)`
+  font-size: .8rem;
+  color: #8c8c8c;
   text-decoration: none;
-  font-size: 14px;
   color: #ececec;
 `;
