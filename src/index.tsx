@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import GlobalStyle from "./global-style";
 import Navgation from "./components/navigation";
 import { BrowserRouter } from "react-router-dom";
+import MainPage from "./pages/main";
 
 const App: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const App: React.FC = () => {
       <BrowserRouter>
       <GlobalStyle />
       <Navgation />
-      <h1>Welcome to My Portfolio WebSite!</h1>
+      <MainPage />
       </BrowserRouter>
     </main>
   );
