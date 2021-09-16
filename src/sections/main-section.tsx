@@ -1,28 +1,33 @@
+import { useState } from 'react';
 import { 
+  MainContainer,
   ScrollSection, 
   MainMessage, 
   DescMessage,
   MidMeessage,
   Pin,
-  CanvasCaption,
+  CanvasCaption,  
   Footer
 } from './elements';
 
+
 const MainSection: React.FC = () => {
+  const [currnetScene, setCurrentScene] = useState<string>("show-scene-0");
+
   return (
-    <>
-      <ScrollSection className="0">
+    <MainContainer className={currnetScene}>
+      <ScrollSection className="section-0">
         <h1>UX Developer</h1>
-        <MainMessage>
+        <MainMessage className="sticky-elem">
           <p>온전히 빠져들게하는<br />최고의 페이지</p>
-        </MainMessage>
-        <MainMessage>
+        </MainMessage> 
+        <MainMessage className="sticky-elem">
           <p>사용자의 경험을 극대화하는<br />유동적인 UI</p>
         </MainMessage>
-        <MainMessage>
+        <MainMessage className="sticky-elem">
           <p>어느 기기에서나 접근 가능한<br />반응형 디자인</p>
         </MainMessage>
-        <MainMessage>
+        <MainMessage className="sticky-elem">
           <p>보이는 즐거움<br />재밌는 경험</p>
         </MainMessage>
       </ScrollSection>
@@ -33,24 +38,24 @@ const MainSection: React.FC = () => {
         </p>
       </ScrollSection>
       <ScrollSection className="section-2">
-        <MainMessage>
+        <MainMessage className="sticky-elem">
           <p className="desc2">
             <small>즐거운 경험</small>
             혁신을 제공하다
           </p>
         </MainMessage>
-        <DescMessage>
+        <DescMessage className="sticky-elem">
           <p>
             편안한 디자인과 완성하는 디테일한 여러 구성 요소들, 저는 이를 하나하나 고민하고 살피고 재구성하는 과정을 통해 사용자에게 최고의 경험을 선사합니다.
           </p>
           <Pin />
         </DescMessage>
-        <DescMessage>
+        <DescMessage className="sticky-elem">
           디자인 앤 퀄리티 오브 KWHong,<br/>메이드 인 KWHong
         </DescMessage>
         <Pin />
       </ScrollSection>
-      <ScrollSection id="4">
+      <ScrollSection className="section-3">
         <MidMeessage>
           <strong>Passion 열정</strong><br/>
           생각을 표현하는 방법<br/>
@@ -63,7 +68,7 @@ const MainSection: React.FC = () => {
       <Footer>
         2021© KWHong
       </Footer>
-    </>
+    </MainContainer>
   );
 }
 
