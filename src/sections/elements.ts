@@ -12,7 +12,7 @@ export const ScrollSection = styled.section`
     font-weight: 800 ;
   }
 
-  .description {
+  .desc1 {
     padding: 0 1rem;
     font-size: 1rem;
     color: #888;
@@ -23,6 +23,10 @@ export const ScrollSection = styled.section`
       font-size: 2rem;
       color: #d4d4d4;
     }
+  }
+
+  .desc2 {
+    font-size: 1.8 rem;
   }
 `;
 
@@ -36,18 +40,51 @@ export const MainMessage = styled.div`
   background: rgba(0, 0, 0, 0.3);
 
   p {
-    font-weight: 500;
+    font-weight: bold;
     line-height: 1.2;
     text-align: center;
   }
+    
+  small {
+    text-align: center;
+    display: block;
+    margin-bottom: 1em;
+    font-size: .8rem;
+   }
 `;
 
-export const DescMessage = styled.div``;
+export const DescMessage = styled.div`
+  font-weight: bold;
+  width: 50%;
+`;
 
-export const MidMeessage = styled.p``;
+export const MidMeessage = styled.p`
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  color: #999 ;
+  line-height: 1.3;
 
-export const Pin = styled.div``;
+  strong {
+    color: #d4d4d4;
+  }
+`;
 
-export const CanvasCaption = styled.p``;
+export const Pin = styled.div`
+  width: 1px;
+  height: 100px;
+  background: #d4d4d4;
+`;
 
-export const Footer = styled.footer``;
+export const CanvasCaption = styled.p`
+  padding: 0 1rem;
+  font-size: .8rem;
+  color: #999;
+`;
+
+export const Footer = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.5rem;
+  background: slateblue;
+`;

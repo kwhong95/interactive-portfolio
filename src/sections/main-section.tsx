@@ -11,7 +11,7 @@ import {
 const MainSection: React.FC = () => {
   return (
     <>
-      <ScrollSection id="1">
+      <ScrollSection className="0">
         <h1>UX Developer</h1>
         <MainMessage>
           <p>온전히 빠져들게하는<br />최고의 페이지</p>
@@ -26,16 +26,18 @@ const MainSection: React.FC = () => {
           <p>보이는 즐거움<br />재밌는 경험</p>
         </MainMessage>
       </ScrollSection>
-      <ScrollSection id="2">
-        <p className="description">
+      <ScrollSection className="section-1">
+        <p className="desc1">
           <strong>보통 스크롤 영역</strong>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates consectetur ad repudiandae recusandae cupiditate ipsam quibusdam vel delectus aperiam voluptatibus et, iste aspernatur labore magnam tempore nam vitae, quas doloremque explicabo corporis exercitationem veniam accusamus. A cumque, in suscipit sit commodi cum officia nam ad iusto eum ratione unde quidem esse perferendis autem aperiam ipsam itaque vel aspernatur? Quas dolorum explicabo nihil rerum nisi velit blanditiis, voluptates odit optio cupiditate corporis, nulla sapiente reprehenderit quibusdam similique totam ratione, quo consequatur quae voluptatem magnam! Ab officiis facilis corporis quisquam quae aut beatae illum rerum eligendi recusandae velit itaque blanditiis, tempore hic eveniet ipsum saepe aliquam sequi veniam mollitia deleniti iste fugiat rem autem? Voluptatum natus placeat quo quas quibusdam quam facere iusto sit. In reiciendis tenetur ab libero earum suscipit ea, quam tempore quibusdam cupiditate officiis! Quaerat ducimus blanditiis quam, rerum ad facilis inventore dolore nisi aperiam ab modi exercitationem ut, quas laudantium dolor nam doloremque animi ex suscipit veniam enim. Exercitationem possimus est asperiores aut earum dolore dolorem placeat libero modi accusantium autem non aliquid ea maiores quos explicabo, debitis ullam hic! Placeat neque recusandae temporibus quo, similique animi? Illum asperiores quis obcaecati dolore tempore culpa officiis non, suscipit harum!
         </p>
       </ScrollSection>
-      <ScrollSection id="3">
+      <ScrollSection className="section-2">
         <MainMessage>
-          <small>즐거운 경험</small>
-          혁신을 제공 하다
+          <p className="desc2">
+            <small>즐거운 경험</small>
+            혁신을 제공하다
+          </p>
         </MainMessage>
         <DescMessage>
           <p>
