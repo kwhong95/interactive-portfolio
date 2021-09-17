@@ -7,7 +7,7 @@ export interface SceneInfo {
   }
 }
 
-export const mainSceneInfo: Array<SceneInfo> = [
+export const mainSceneInfo: Array<SceneInfo>= [
   {
     type: "sticky",
     heightNum: 5, // 브라우저 높이의 5배로 scrollHeight 세팅

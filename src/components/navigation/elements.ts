@@ -4,6 +4,10 @@ import { NavLink } from "react-router-dom";
 /* navigation */
 
 export const Nav = styled.nav`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
   height: 44px;
   padding: 0 1rem;
 `;

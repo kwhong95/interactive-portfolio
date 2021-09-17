@@ -9,29 +9,51 @@ import {
   CanvasCaption,  
   Footer
 } from './elements';
-import { mainSceneInfo, SceneInfo } from './main-section-info';
+import { mainSceneInfo } from './main-section-info';
 
 
 const MainSection: React.FC = () => {
   const mainRef = useRef<HTMLDivElement | null>(null);
-  const [sceneInfo, setSceneInfo] = useState<Array<SceneInfo> | any>(mainSceneInfo);
+  let yOffset: number = 0;
+  let prevScrollHeight: number = 0;
+  let currentScene: number = 0;
 
   function setLayout() {
-    setSceneInfo((value: Array<SceneInfo>) => {
-      for (let i = 0; i < value.length; i++ ) {
-        value[i].objs.container = mainRef.current?.childNodes[i];
-        value[i].scrollHeight = value[i].heightNum * window.innerHeight;
-        value[i].objs.container.style.height = `${value[i].scrollHeight}px`;
-      } 
-    })
-    console.log(sceneInfo);
+    for (let i = 0; i < mainSceneInfo.length; i++ ) {
+      mainSceneInfo[i].objs.container = mainRef.current?.childNodes[i];
+      mainSceneInfo[i].scrollHeight = mainSceneInfo[i].heightNum * window.innerHeight;
+      mainSceneInfo[i].objs.container.style.height = `${mainSceneInfo[i].scrollHeight}px`;
+    } 
   }
+  
+  function scrollLoop () {
+    prevScrollHeight = 0;
+    for (let i = 0; i < currentScene; i++) {
+      prevScrollHeight += mainSceneInfo[i].scrollHeight;
+    }
+
+    if (yOffset > prevScrollHeight + mainSceneInfo[currentScene].scrollHeight) {
+      currentScene++;
+    }
+
+    if (yOffset < prevScrollHeight) {
+      // 브라우저 바운스 효과로 인해 마이너스가 되는 것을 방지(모바일)
+      if (currentScene === 0) return;
+      currentScene--;
+    }
+
+    console.log(currentScene);
+  }
+
+  window.addEventListener('resize', setLayout);
+
+  window.addEventListener('scroll', () => {
+    yOffset = window.pageYOffset;
+    scrollLoop();
+  });
 
   useEffect(() => {
     setLayout();
-    window.addEventListener('resize', setLayout);
-
-    return () => window.removeEventListener('resize', setLayout);
   }, []);  
 
   return (
@@ -72,8 +94,8 @@ const MainSection: React.FC = () => {
         </DescMessage>
         <DescMessage className="sticky-elem">
           디자인 앤 퀄리티 오브 KWHong,<br/>메이드 인 KWHong
+          <Pin />
         </DescMessage>
-        <Pin />
       </ScrollSection>
       <ScrollSection className="section-3">
         <MidMeessage>
