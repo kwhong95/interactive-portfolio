@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   MainContainer,
   ScrollSection, 
@@ -14,50 +14,65 @@ import { mainSceneInfo } from './main-section-info';
 
 const MainSection: React.FC = () => {
   const mainRef = useRef<HTMLDivElement | null>(null);
-  let yOffset: number = 0;
+  const [currentScene, setCurrentScene] = useState<number>(0);
+  const [positonY, setPositionY] = useState<number>(0);
+  const [totalScrollHeight, setTotalScrollHeight] = useState<number>(0);
+  // const [prevScrollHeight, setPrevScrollHeight] = useState<number>(0);
   let prevScrollHeight: number = 0;
-  let currentScene: number = 0;
 
-  function setLayout() {
+  const setLayout = () => {
     for (let i = 0; i < mainSceneInfo.length; i++ ) {
       mainSceneInfo[i].objs.container = mainRef.current?.childNodes[i];
       mainSceneInfo[i].scrollHeight = mainSceneInfo[i].heightNum * window.innerHeight;
       mainSceneInfo[i].objs.container.style.height = `${mainSceneInfo[i].scrollHeight}px`;
     } 
+
+
+    for(let i = 0; i < mainSceneInfo.length; i++) {
+      setTotalScrollHeight(v => v + mainSceneInfo[i].scrollHeight)
+      if (totalScrollHeight >= positonY) {
+        setCurrentScene(i);
+        break;
+      }
+      setCurrentScene(currentScene);
+    }
   }
-  
-  function scrollLoop () {
+
+  const scrollLoop = () => {
+    setPositionY(window.pageYOffset);
     prevScrollHeight = 0;
     for (let i = 0; i < currentScene; i++) {
       prevScrollHeight += mainSceneInfo[i].scrollHeight;
     }
 
-    if (yOffset > prevScrollHeight + mainSceneInfo[currentScene].scrollHeight) {
-      currentScene++;
+    if (positonY > prevScrollHeight + mainSceneInfo[currentScene].scrollHeight) {
+      setCurrentScene(v => v + 1);
     }
 
-    if (yOffset < prevScrollHeight) {
+    if (positonY < prevScrollHeight) {
       // 브라우저 바운스 효과로 인해 마이너스가 되는 것을 방지(모바일)
       if (currentScene === 0) return;
-      currentScene--;
+      setCurrentScene(v => v - 1);
     }
-
-    console.log(currentScene);
   }
 
-  window.addEventListener('resize', setLayout);
+  useEffect(() => {  
+    window.addEventListener("scroll", scrollLoop);
+    window.addEventListener("resize", setLayout);
+    window.addEventListener("load", setLayout);
 
-  window.addEventListener('scroll', () => {
-    yOffset = window.pageYOffset;
-    scrollLoop();
-  });
-
-  useEffect(() => {
-    setLayout();
-  }, []);  
+    return () => {
+      window.removeEventListener("scroll", scrollLoop);
+      window.removeEventListener("resize", setLayout);
+      window.removeEventListener("load", setLayout);
+    }
+  }, [scrollLoop]);  
 
   return (
-    <MainContainer ref={mainRef}>
+    <MainContainer 
+      ref={mainRef} 
+      currentScene={currentScene}
+    >
       <ScrollSection className="section-0">
         <h1>UX Developer</h1>
         <MainMessage className="sticky-elem">

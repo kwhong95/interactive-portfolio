@@ -2,7 +2,13 @@ import styled  from "styled-components";
 
 /* Main Section */
 
-export const MainContainer = styled.main`
+export const MainContainer = styled.main<{ currentScene: number}>`
+  .section-${props => props.currentScene} {
+    .sticky-elem {
+      display: block;
+    }
+  }
+
 `;
 
 export const ScrollSection = styled.section`
