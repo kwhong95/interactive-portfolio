@@ -17,12 +17,15 @@ const MainSection: React.FC = () => {
   const [currentScene, setCurrentScene] = useState<number>(0);
   const [positonY, setPositionY] = useState<number>(0);
   const [totalScrollHeight, setTotalScrollHeight] = useState<number>(0);
-  // const [prevScrollHeight, setPrevScrollHeight] = useState<number>(0);
   let prevScrollHeight: number = 0;
 
   const setLayout = () => {
     for (let i = 0; i < mainSceneInfo.length; i++ ) {
       mainSceneInfo[i].objs.container = mainRef.current?.childNodes[i];
+      mainSceneInfo[i].objs.messageA = mainRef.current?.childNodes[0].childNodes[i + 1];
+      mainSceneInfo[i].objs.messageB = mainRef.current?.childNodes[0].childNodes[i + 2];
+      mainSceneInfo[i].objs.messageC = mainRef.current?.childNodes[0].childNodes[i + 3];
+      mainSceneInfo[i].objs.messageD = mainRef.current?.childNodes[0].childNodes[i + 4];
       mainSceneInfo[i].scrollHeight = mainSceneInfo[i].heightNum * window.innerHeight;
       mainSceneInfo[i].objs.container.style.height = `${mainSceneInfo[i].scrollHeight}px`;
     } 
@@ -58,10 +61,25 @@ const MainSection: React.FC = () => {
     playAnimation();
   }
 
+  const calcValues = (values: number[], currentYOffset: number) => {
+    let rv;
+    // 현재 씬(스크롤섹션)에서 스크롤된 범위를 비율로 구하기
+    let scrollRatio = currentYOffset / mainSceneInfo[currentScene].scrollHeight;
+
+    rv = scrollRatio * (values[1] - values[0]) + values[0]; 
+    
+    return rv;
+  }
+
   const playAnimation = () => {
+    const objs = mainSceneInfo[currentScene].objs;
+    const values = mainSceneInfo[currentScene].values;
+    const currentYOffset = positonY - prevScrollHeight;
+
     switch(currentScene) {
       case 0:
-        console.log("0 play");
+        let messageA_opacity_in = calcValues(values?.messageA_opacity, currentYOffset);
+        objs.messageA.style.opacity = messageA_opacity_in;
         break;
       case 1:
         // console.log("1 play");
@@ -97,7 +115,7 @@ const MainSection: React.FC = () => {
         <MainMessage className="sticky-elem">
           <p>온전히 빠져들게하는<br />최고의 페이지</p>
         </MainMessage> 
-        <MainMessage className="sticky-elem">
+        {/* <MainMessage className="sticky-elem">
           <p>사용자의 경험을 극대화하는<br />유동적인 UI</p>
         </MainMessage>
         <MainMessage className="sticky-elem">
@@ -105,7 +123,7 @@ const MainSection: React.FC = () => {
         </MainMessage>
         <MainMessage className="sticky-elem">
           <p>보이는 즐거움<br />재밌는 경험</p>
-        </MainMessage>
+        </MainMessage> */}
       </ScrollSection>
       <ScrollSection className="section-1">
         <p className="desc1">

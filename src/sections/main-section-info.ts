@@ -9,8 +9,8 @@ export interface SceneInfo {
     messageC?: any;
     messageD?: any;
   },
-  value?: {
-    messageA_opacity: number[];
+  values?: {
+    messageA_opacity: number[] | any;
   }
 }
 
@@ -26,7 +26,7 @@ export const mainSceneInfo: Array<SceneInfo>= [
       messageC: null,
       messageD: null
     },
-    value: {
+    values: {
       messageA_opacity: [0, 1]
     }
   },
