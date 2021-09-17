@@ -1,19 +1,19 @@
-export interface SectionInfo {
+export interface SceneInfo {
   type: "sticky" | "nornal";
   heightNum: number;
   scrollHeight: number;
   objs: {
-    container: HTMLCollection;
+    container: any;
   }
 }
 
-export const MainSectionInfo: Array<SectionInfo> = [
+export const mainSceneInfo: Array<SceneInfo> = [
   {
     type: "sticky",
     heightNum: 5, // 브라우저 높이의 5배로 scrollHeight 세팅
     scrollHeight: 0,
     objs: {
-      container: document.getElementsByClassName('.section-0')
+      container: null
     }
   },
   {
@@ -21,7 +21,7 @@ export const MainSectionInfo: Array<SectionInfo> = [
     heightNum: 5,
     scrollHeight: 0,
     objs: {
-      container: document.getElementsByClassName('.section-1')
+      container: null
     }
   },
   {
@@ -29,7 +29,7 @@ export const MainSectionInfo: Array<SectionInfo> = [
     heightNum: 5,
     scrollHeight: 0,
     objs: {
-      container: document.getElementsByClassName('.section-2')
+      container: null
     }
   },
   {
@@ -37,7 +37,7 @@ export const MainSectionInfo: Array<SectionInfo> = [
     heightNum: 5,
     scrollHeight: 0,
     objs: {
-      container: document.getElementsByClassName('.section-3')
+      container: null
     }
   }
 ]

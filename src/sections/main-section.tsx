@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { 
   MainContainer,
   ScrollSection, 
@@ -9,12 +9,33 @@ import {
   CanvasCaption,  
   Footer
 } from './elements';
+import { mainSceneInfo, SceneInfo } from './main-section-info';
 
 
 const MainSection: React.FC = () => {
+  const mainRef = useRef<HTMLDivElement | null>(null);
+  const [sceneInfo, setSceneInfo] = useState<Array<SceneInfo> | any>(mainSceneInfo);
+
+  function setLayout() {
+    setSceneInfo((value: Array<SceneInfo>) => {
+      for (let i = 0; i < value.length; i++ ) {
+        value[i].objs.container = mainRef.current?.childNodes[i];
+        value[i].scrollHeight = value[i].heightNum * window.innerHeight;
+        value[i].objs.container.style.height = `${value[i].scrollHeight}px`;
+      } 
+    })
+    console.log(sceneInfo);
+  }
+
+  useEffect(() => {
+    setLayout();
+    window.addEventListener('resize', setLayout);
+
+    return () => window.removeEventListener('resize', setLayout);
+  }, []);  
 
   return (
-    <MainContainer>
+    <MainContainer ref={mainRef}>
       <ScrollSection className="section-0">
         <h1>UX Developer</h1>
         <MainMessage className="sticky-elem">
