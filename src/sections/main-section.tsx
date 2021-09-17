@@ -54,6 +54,25 @@ const MainSection: React.FC = () => {
       if (currentScene === 0) return;
       setCurrentScene(v => v - 1);
     }
+
+    playAnimation();
+  }
+
+  const playAnimation = () => {
+    switch(currentScene) {
+      case 0:
+        console.log("0 play");
+        break;
+      case 1:
+        // console.log("1 play");
+        break;
+      case 2:
+        // console.log("2 play");
+        break;
+      case 3:
+        // console.log("3 play");
+        break;      
+    }
   }
 
   useEffect(() => {  
