@@ -22,20 +22,27 @@ const MainSection: React.FC = () => {
   const setLayout = () => {
     for (let i = 0; i < mainSceneInfo.length; i++ ) {
       mainSceneInfo[i].objs.container = mainRef.current?.childNodes[i];
-      mainSceneInfo[i].objs.messageA = mainRef.current?.childNodes[0].childNodes[i + 1];
-      mainSceneInfo[i].objs.messageB = mainRef.current?.childNodes[0].childNodes[i + 2];
-      mainSceneInfo[i].objs.messageC = mainRef.current?.childNodes[0].childNodes[i + 3];
-      mainSceneInfo[i].objs.messageD = mainRef.current?.childNodes[0].childNodes[i + 4];
-
+      if (i === 0) { 
+        mainSceneInfo[i].objs.messageA = mainRef.current?.childNodes[i].childNodes[i + 1];
+        mainSceneInfo[i].objs.messageB = mainRef.current?.childNodes[i].childNodes[i + 2];
+        mainSceneInfo[i].objs.messageC = mainRef.current?.childNodes[i].childNodes[i + 3];
+        mainSceneInfo[i].objs.messageD = mainRef.current?.childNodes[i].childNodes[i + 4];
+      } else if (i === 2) {
+        mainSceneInfo[i].objs.messageA = mainRef.current?.childNodes[i].childNodes[i - 2];
+        mainSceneInfo[i].objs.messageB = mainRef.current?.childNodes[i].childNodes[i - 1];
+        mainSceneInfo[i].objs.messageC = mainRef.current?.childNodes[i].childNodes[i];
+        mainSceneInfo[i].objs.pinB = mainRef.current?.childNodes[i].childNodes[i - 1].childNodes[i - 1];
+        mainSceneInfo[i].objs.pinC = mainRef.current?.childNodes[i].childNodes[i].childNodes[i - 1];
+      }
       if (mainSceneInfo[i].type === "sticky") {
-        mainSceneInfo[i].scrollHeight = mainSceneInfo[i].heightNum * window.innerHeight;
+        mainSceneInfo[i].scrollHeight = mainSceneInfo[i].heightNum as number * window.innerHeight;
       } else if (mainSceneInfo[i].type === "normal") {
         mainSceneInfo[i].scrollHeight = mainSceneInfo[i].objs.container.offsetHeight
       }
       mainSceneInfo[i].objs.container.style.height = `${mainSceneInfo[i].scrollHeight}px`;
     } 
 
-
+    console.log(mainSceneInfo);
 
     for(let i = 0; i < mainSceneInfo.length; i++) {
       setTotalScrollHeight(v => v + mainSceneInfo[i].scrollHeight)
@@ -111,15 +118,69 @@ const MainSection: React.FC = () => {
           objs.messageA.style.opacity = calcValues(values?.messageA_opacity_out, currentYOffset);
           objs.messageA.style.transform = `translateY(${calcValues(values?.messageA_translateY_out, currentYOffset)}%)`;
         }
-        break;
-      case 1:
-        // console.log("1 play");
+
+        if (scrollRatio <= 0.42) {
+          // In
+          objs.messageB.style.opacity = calcValues(values?.messageB_opacity_in, currentYOffset);
+          objs.messageB.style.transform = `translateY(${calcValues(values?.messageB_translateY_in, currentYOffset)}%)`;
+        } else {
+          // Out
+          objs.messageB.style.opacity = calcValues(values?.messageB_opacity_out, currentYOffset);
+          objs.messageB.style.transform = `translateY(${calcValues(values?.messageB_translateY_out, currentYOffset)}%)`;
+        }
+
+        if (scrollRatio <= 0.62) {
+          // In
+          objs.messageC.style.opacity = calcValues(values?.messageC_opacity_in, currentYOffset);
+          objs.messageC.style.transform = `translateY(${calcValues(values?.messageC_translateY_in, currentYOffset)}%)`;
+        } else {
+          // Out
+          objs.messageC.style.opacity = calcValues(values?.messageC_opacity_out, currentYOffset);
+          objs.messageC.style.transform = `translateY(${calcValues(values?.messageC_translateY_out, currentYOffset)}%)`;
+        }
+
+        if (scrollRatio <= 0.82) {
+          // In
+          objs.messageD.style.opacity = calcValues(values?.messageD_opacity_in, currentYOffset);
+          objs.messageD.style.transform = `translateY(${calcValues(values?.messageD_translateY_in, currentYOffset)}%)`;
+        } else {
+          // Out
+          objs.messageD.style.opacity = calcValues(values?.messageD_opacity_out, currentYOffset);
+          objs.messageD.style.transform = `translateY(${calcValues(values?.messageD_translateY_out, currentYOffset)}%)`;
+        }
         break;
       case 2:
-        // console.log("2 play");
+        if (scrollRatio <= 0.32) {
+          // In
+          objs.messageA.style.opacity = calcValues(values?.messageA_opacity_in, currentYOffset);
+          objs.messageA.style.transform = `translateY(${calcValues(values?.messageA_translateY_in, currentYOffset)}%)`;
+        } else {
+          // Out
+          objs.messageA.style.opacity = calcValues(values?.messageA_opacity_out, currentYOffset);
+          objs.messageA.style.transform = `translateY(${calcValues(values?.messageA_translateY_out, currentYOffset)}%)`;
+        }
+
+        if (scrollRatio <= 0.67) {
+          // In
+          objs.messageB.style.opacity = calcValues(values?.messageB_opacity_in, currentYOffset);
+          objs.messageB.style.transform = `translateY(${calcValues(values?.messageB_translateY_in, currentYOffset)}%)`;
+        } else {
+          // Out
+          objs.messageB.style.opacity = calcValues(values?.messageB_opacity_out, currentYOffset);
+          objs.messageB.style.transform = `translateY(${calcValues(values?.messageB_translateY_out, currentYOffset)}%)`;
+        }
+
+        if (scrollRatio <= 0.93) {
+          // In
+          objs.messageC.style.opacity = calcValues(values?.messageC_opacity_in, currentYOffset);
+          objs.messageC.style.transform = `translateY(${calcValues(values?.messageC_translateY_in, currentYOffset)}%)`;
+        } else {
+          // Out
+          objs.messageC.style.opacity = calcValues(values?.messageC_opacity_out, currentYOffset);
+          objs.messageC.style.transform = `translateY(${calcValues(values?.messageC_translateY_out, currentYOffset)}%)`;
+        }
         break;
       case 3:
-        // console.log("3 play");
         break;      
     }
   }
@@ -146,7 +207,7 @@ const MainSection: React.FC = () => {
         <MainMessage className="sticky-elem">
           <p>온전히 빠져들게하는<br />최고의 페이지</p>
         </MainMessage> 
-        {/* <MainMessage className="sticky-elem">
+        <MainMessage className="sticky-elem">
           <p>사용자의 경험을 극대화하는<br />유동적인 UI</p>
         </MainMessage>
         <MainMessage className="sticky-elem">
@@ -154,7 +215,7 @@ const MainSection: React.FC = () => {
         </MainMessage>
         <MainMessage className="sticky-elem">
           <p>보이는 즐거움<br />재밌는 경험</p>
-        </MainMessage> */}
+        </MainMessage>
       </ScrollSection>
       <ScrollSection className="section-1">
         <p className="desc1">
@@ -176,7 +237,7 @@ const MainSection: React.FC = () => {
           <Pin />
         </DescMessage>
         <DescMessage className="sticky-elem">
-          디자인 앤 퀄리티 오브 KWHong,<br/>메이드 인 KWHong
+          <p>디자인 앤 퀄리티 오브 KWHong,<br/>메이드 인 KWHong</p>
           <Pin />
         </DescMessage>
       </ScrollSection>

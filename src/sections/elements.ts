@@ -99,9 +99,13 @@ export const MainMessage = styled.div`
 
 export const DescMessage = styled.div`
   font-weight: bold;
-  width: 50%;
-  top: 10%;
-  left: 40%;
+
+  p {
+    position: absolute;
+    width: 35%;
+    top: 100%;
+    left: 40%;
+  }
 
   @media (min-width: 1024px) {
     width: 20%;
@@ -128,6 +132,9 @@ export const MidMeessage = styled.p`
 `;
 
 export const Pin = styled.div`
+  position: absolute;
+  top: 2.8em;
+  left: 40%;
   width: 1px;
   height: 100px;
   background: #d4d4d4;
