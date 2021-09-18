@@ -91,14 +91,25 @@ const MainSection: React.FC = () => {
     const objs = mainSceneInfo[currentScene].objs;
     const values = mainSceneInfo[currentScene].values;
     const currentYOffset = positonY - prevScrollHeight;
-
-    console.log(currentScene);
+    const scrollHeight = mainSceneInfo[currentScene].scrollHeight;
+    const scrollRatio = currentYOffset / scrollHeight;
 
     switch(currentScene) {
       case 0:
-        let messageA_opacity_in = calcValues(values?.messageA_opacity, currentYOffset);
-        objs.messageA.style.opacity = messageA_opacity_in;
-        console.log(messageA_opacity_in);
+        const messageA_opacity_in = calcValues(values?.messageA_opacity_in, currentYOffset);
+        const messageA_opacity_out = calcValues(values?.messageA_opacity_out, currentYOffset);
+        const messageA_translateY_in = calcValues(values?.messageA_translateY_in, currentYOffset);
+        const messageA_translateY_out = calcValues(values?.messageA_translateY_out, currentYOffset);
+
+        if (scrollRatio <= 0.22) {
+          // In
+          objs.messageA.style.opacity = messageA_opacity_in;
+          objs.messageA.style.transform = `translateY(${messageA_translateY_in}%)`;
+        } else {
+          // Out
+          objs.messageA.style.opacity = messageA_opacity_out;
+          objs.messageA.style.transform = `translateY(${messageA_translateY_out}%)`;
+        }
         break;
       case 1:
         // console.log("1 play");

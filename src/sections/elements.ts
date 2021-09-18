@@ -28,7 +28,6 @@ export const ScrollSection = styled.section`
   .sticky-elem {
     display: none;
     position: fixed;
-    top: 0;
     left: 0;
     width: 100%;
   }
@@ -74,6 +73,7 @@ export const MainMessage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  top: 35vh;
   margin: 5px 0;
   height: 3em;
   font-size: 1.5rem;
