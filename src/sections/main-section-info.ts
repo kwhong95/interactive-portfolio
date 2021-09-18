@@ -1,5 +1,5 @@
 export interface SceneInfo {
-  type: "sticky" | "nornal";
+  type: "sticky" | "normal";
   heightNum: number;
   scrollHeight: number;
   objs: {
@@ -39,7 +39,7 @@ export const mainSceneInfo: Array<SceneInfo>= [
     }
   },
   {
-    type: "nornal",
+    type: "normal",
     heightNum: 5,
     scrollHeight: 0,
     objs: {

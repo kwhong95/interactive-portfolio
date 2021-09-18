@@ -100,9 +100,13 @@ export const MainMessage = styled.div`
 export const DescMessage = styled.div`
   font-weight: bold;
   width: 50%;
+  top: 10%;
+  left: 40%;
 
   @media (min-width: 1024px) {
     width: 20%;
+    top: 20%;
+    left: 53%;
   }
 `;
 

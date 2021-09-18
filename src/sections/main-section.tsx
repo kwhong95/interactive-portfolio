@@ -26,9 +26,15 @@ const MainSection: React.FC = () => {
       mainSceneInfo[i].objs.messageB = mainRef.current?.childNodes[0].childNodes[i + 2];
       mainSceneInfo[i].objs.messageC = mainRef.current?.childNodes[0].childNodes[i + 3];
       mainSceneInfo[i].objs.messageD = mainRef.current?.childNodes[0].childNodes[i + 4];
-      mainSceneInfo[i].scrollHeight = mainSceneInfo[i].heightNum * window.innerHeight;
+
+      if (mainSceneInfo[i].type === "sticky") {
+        mainSceneInfo[i].scrollHeight = mainSceneInfo[i].heightNum * window.innerHeight;
+      } else if (mainSceneInfo[i].type === "normal") {
+        mainSceneInfo[i].scrollHeight = mainSceneInfo[i].objs.container.offsetHeight
+      }
       mainSceneInfo[i].objs.container.style.height = `${mainSceneInfo[i].scrollHeight}px`;
     } 
+
 
 
     for(let i = 0; i < mainSceneInfo.length; i++) {
@@ -96,19 +102,14 @@ const MainSection: React.FC = () => {
 
     switch(currentScene) {
       case 0:
-        const messageA_opacity_in = calcValues(values?.messageA_opacity_in, currentYOffset);
-        const messageA_opacity_out = calcValues(values?.messageA_opacity_out, currentYOffset);
-        const messageA_translateY_in = calcValues(values?.messageA_translateY_in, currentYOffset);
-        const messageA_translateY_out = calcValues(values?.messageA_translateY_out, currentYOffset);
-
         if (scrollRatio <= 0.22) {
           // In
-          objs.messageA.style.opacity = messageA_opacity_in;
-          objs.messageA.style.transform = `translateY(${messageA_translateY_in}%)`;
+          objs.messageA.style.opacity = calcValues(values?.messageA_opacity_in, currentYOffset);
+          objs.messageA.style.transform = `translateY(${calcValues(values?.messageA_translateY_in, currentYOffset)}%)`;
         } else {
           // Out
-          objs.messageA.style.opacity = messageA_opacity_out;
-          objs.messageA.style.transform = `translateY(${messageA_translateY_out}%)`;
+          objs.messageA.style.opacity = calcValues(values?.messageA_opacity_out, currentYOffset);
+          objs.messageA.style.transform = `translateY(${calcValues(values?.messageA_translateY_out, currentYOffset)}%)`;
         }
         break;
       case 1:
