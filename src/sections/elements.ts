@@ -69,6 +69,16 @@ export const ScrollSection = styled.section`
   }
 `;
 
+export const CanvasWrap = styled.div`
+  position: fixed;
+  top: 0;
+  background-color: lightgray;
+`;
+
+export const VideoCanvas = styled.canvas`
+
+`;
+
 export const MainMessage = styled.div`
   display: flex;
   align-items: center;

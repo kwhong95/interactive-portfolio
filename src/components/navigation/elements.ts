@@ -10,6 +10,7 @@ export const Nav = styled.nav`
   left: 0;
   height: 44px;
   padding: 0 1rem;
+  z-index: 10;
 `;
 
 export const NavList = styled.div`

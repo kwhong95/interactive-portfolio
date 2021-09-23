@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { 
   MainContainer,
   ScrollSection, 
+  CanvasWrap,
+  VideoCanvas,
   MainMessage, 
   DescMessage,
   MidMeessage,
@@ -14,10 +16,24 @@ import { mainSceneInfo } from './main-section-info';
 
 const MainSection: React.FC = () => {
   const mainRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [currentScene, setCurrentScene] = useState<number>(0);
   const [positonY, setPositionY] = useState<number>(0);
   const [totalScrollHeight, setTotalScrollHeight] = useState<number>(0);
   let prevScrollHeight: number = 0;
+
+  const setCanvasImages = () => {
+    let imgElem;
+    for (let i = 0; i < mainSceneInfo[0].values?.videoImagecount; i++) {
+      imgElem = new Image();
+      imgElem.src = `../assets/typing_24/typing_${1 + i}.jpg`;
+      mainSceneInfo[0].objs.videoImages.push(imgElem);
+    }
+
+    console.log(mainSceneInfo[0].objs.videoImages);
+  }
+
+  setCanvasImages();
 
   const setLayout = () => {
     for (let i = 0; i < mainSceneInfo.length; i++ ) {
@@ -27,6 +43,8 @@ const MainSection: React.FC = () => {
         mainSceneInfo[i].objs.messageB = mainRef.current?.childNodes[i].childNodes[i + 2];
         mainSceneInfo[i].objs.messageC = mainRef.current?.childNodes[i].childNodes[i + 3];
         mainSceneInfo[i].objs.messageD = mainRef.current?.childNodes[i].childNodes[i + 4];
+        mainSceneInfo[i].objs.canvas = canvasRef.current;
+        mainSceneInfo[i].objs.context = canvasRef.current?.getContext("2d"); 
       } else if (i === 2) {
         mainSceneInfo[i].objs.messageA = mainRef.current?.childNodes[i].childNodes[i - 2];
         mainSceneInfo[i].objs.messageB = mainRef.current?.childNodes[i].childNodes[i - 1];
@@ -204,6 +222,9 @@ const MainSection: React.FC = () => {
     >
       <ScrollSection className="section-0">
         <h1>UX Developer</h1>
+        <CanvasWrap className="sticky-elem">
+          <VideoCanvas width="1920" height="1080" ref={canvasRef} />
+        </CanvasWrap>
         <MainMessage className="sticky-elem">
           <p>온전히 빠져들게하는<br />최고의 페이지</p>
         </MainMessage> 

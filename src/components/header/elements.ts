@@ -10,4 +10,5 @@ export const Header = styled.header`
   height: 52px;
   border-bottom: 1px solid #4d4d4d;
   padding: 1rem;
+  z-index: 11;
 `;

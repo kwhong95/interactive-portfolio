@@ -10,8 +10,13 @@ export interface SceneInfo {
     messageD?: any;
     pinB?: any;
     pinC?: any;
+    canvas?: any;
+    context?: any;
+    videoImages?: any,
   },
   values?: {
+    videoImagecount?: any;
+    imageSequence?: any,
     messageA_opacity_in?: any;
     messageB_opacity_in?: any;
     messageC_opacity_in?: any;
@@ -41,9 +46,14 @@ export const mainSceneInfo: Array<SceneInfo>= [
       messageA: null,
       messageB: null,
       messageC: null,
-      messageD: null
+      messageD: null,
+      canvas: null,
+      context: null,
+      videoImages: [],
     },
     values: {
+      videoImagecount: 248,
+      imageSequence: [0, 247],
       messageA_opacity_in: [0, 1, { start: 0.1, end: 0.2 }],
       messageB_opacity_in: [0, 1, { start: 0.3, end: 0.4 }],
       messageC_opacity_in: [0, 1, { start: 0.5, end: 0.6 }],
